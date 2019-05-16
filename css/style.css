@@ -1,0 +1,761 @@
+/*Importera typsnitt*/
+@import url("https://fonts.googleapis.com/css?family=Merriweather");
+@import url("https://fonts.googleapis.com/css?family=Six+Caps");
+
+/*Färger
+  #CDE6F5 = (205,230,245)
+  #554640 = (85,70,64)
+  #F7B2BD = (247,178,189)
+  #8DA7BE =  (141,167,190)
+  #B2A198 = (178,161,152)
+*/
+
+*,
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+section,
+footer {
+  width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Six Caps", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.4rem;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+h2 {
+  font-size: 3rem;
+}
+h3 {
+  font-size: 2.5rem;
+}
+
+p,
+a,
+label,
+li,
+input,
+input[type="submit"],
+textarea {
+  font-family: "Merriweather", serif;
+  line-height: 1.5;
+  letter-spacing: 0.1rem;
+  font-weight: bolder;
+}
+
+body {
+  min-width: 320px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #EEE;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+  color: rgb(247, 178, 189);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
+header h2 {
+  margin-left: .5rem;
+  flex: 1 1 50%;
+  text-shadow: 1px 1px rgba(85, 70, 64, 0.8);
+}
+
+section ul {
+  font-size: 1rem;
+}
+
+ul li {
+  margin: 1rem 1rem;
+}
+
+/*Menyknapp*/
+.menu-button {
+  margin-right: 1rem;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(247, 178, 189);
+  text-decoration: none;
+  padding: 0 1rem;
+}
+
+#menu-open::after {
+  content: "Meny";
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/*Meny*/
+
+nav {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: -210vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  transition: left 0.5s ease, box-shadow 0.5s ease;
+  z-index: 999;
+  -webkit-transition: left 0.5s ease, box-shadow 0.5s ease;
+  -moz-transition: left 0.5s ease, box-shadow 0.5s ease;
+  -ms-transition: left 0.5s ease, box-shadow 0.5s ease;
+  -o-transition: left 0.5s ease, box-shadow 0.5s ease;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+nav a,
+nav a:visited {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 1rem;
+  color: rgb(247, 178, 189);
+}
+
+nav a:hover,
+nav a:focus,
+.menu-button:focus,
+.menu-button:hover {
+  background-color: rgba(205, 230, 245, 1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+#menu-close span,
+.menu-button span {
+  font-size: 2rem;
+}
+#menu-close::after {
+  content: "Stäng";
+}
+
+nav:target,
+nav[aria-expanded="true"] {
+  left: 0;
+}
+
+header h2,
+header h2 span {
+  font-size: 2rem;
+}
+
+/*Hero Image*/
+section.start {
+  width: 100%;
+  position: relative;
+  top: 0;
+  background-image: url(../images/adorable-animal-breed-1805164-sm.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+section.start h1 {
+  margin-top: 55vh;
+  color: #554640;
+  font-size: 2rem;
+  line-height: 1;
+}
+section.start h1 span {
+  color: rgb(247, 178, 189);
+  text-shadow: 2px 2px rgba(85, 70, 64, 0.8);
+  font-size: 4rem;
+}
+
+section.start h1::before,
+section.start h1::after {
+  display: block;
+  margin: 1rem auto;
+  width: 6rem;
+  content: "";
+  border-bottom: solid 1px rgb(85, 70, 64);
+}
+
+/*Grej med bilder vid sidan*/
+section.sellingpoint {
+  padding: 0;
+  display: flex;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+}
+div.left-col,
+div.right-col {
+  flex-basis: 20%;
+  background-color: rgb(205, 230, 245);
+}
+
+div.left-col {
+  background-image: url(../images/adorable-animal-blur-533118-sm.jpg);
+  background-size: cover;
+  background-position-x: 25%;
+  background-color: rgb(205, 230, 245);
+  background-repeat: no-repeat;
+}
+
+div.center-col {
+  flex-basis: 60%;
+  background-color: rgb(85, 70, 64);
+}
+
+div.right-col {
+  background-image: url(../images/animal-blur-close-up-1035365-sm.jpg);
+  background-size: cover;
+  background-position-x: 75%;
+  background-color: rgb(205, 230, 245);
+  background-repeat: no-repeat;
+}
+section.sellingpoint h2 {
+  color: rgb(205, 230, 245);
+}
+
+.sellingpoint h2::after {
+  display: block;
+  content: "";
+  margin: 1rem auto 1rem auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  width: 6rem;
+}
+
+section.sellingpoint p {
+  margin: auto;
+  width: 80%;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.style-one,
+.style-two {
+  color: rgb(178, 161, 152);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Sektioner stylade på olika sätt för att anv. ska kunna variera innehållet på sidan
+ * lättare.
+*/
+
+/*Textstil (Rubrik) för klasserna stil 1 och 2*/
+.style-one h2,
+.style-two h2 {
+  font-size: 2.5rem;
+  line-height: 1;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px rgba(85, 70, 64, 0.8);
+  flex: 1 1 50%;
+  align-self: flex-end;
+  margin-left: -3rem;
+  z-index: 1;
+  color: rgb(247, 178, 189);
+}
+
+.style-one div,
+.style-two div,
+.style-contact div {
+  flex: 1 1 50%;
+  width: 45vw;
+  height: 45vw;
+  background-color: rgb(205, 230, 245);
+  border: solid 0.5rem rgb(205, 230, 245);
+}
+
+.style-one div {
+  background-image: url(../images/animal-animal-photography-beagle-813467_sm.jpg);
+  background-size: cover;
+  background-position-x: 70%;
+  background-color: rgb(205, 230, 245);
+  background-repeat: no-repeat;
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+}
+.style-two div {
+  background-image: url(../images/adorable-animals-belgian-malinois-1633522-sm.jpg);
+  background-size: cover;
+  background-position-x: 30%;
+  background-repeat: no-repeat;
+  border: solid 0.5rem rgb(205, 230, 245);
+}
+
+.style-contact {
+  background-color: rgb(141, 167, 190);
+  color: rgba(255, 255, 255, 0.8);
+}
+.style-contact::after {
+  height: 3vh;
+  background-color: rgb(141, 167, 190);
+  content: "";
+}
+
+.style-contact div {
+  background-image: url(../images/animal-cane-corso-canine-52997-sm.jpg);
+  background-size: cover;
+  background-position-x: 25%;
+  background-repeat: no-repeat;
+  border: solid 0.5rem rgb(205, 230, 245);
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+}
+
+ul,
+.style-one p,
+.style-two p,
+.style-contact p {
+  width: 95%;
+  margin: 1rem auto;
+}
+
+/*Styling av kontaktformulär*/
+.style-contact form {
+  width: 95%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.style-contact form label {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+.style-contact form input[type="text"],
+.style-contact form input[type="email"],
+.style-contact form input[type="submit"],
+textarea {
+  padding: 0.5rem 0.2rem;
+  border: none;
+}
+
+.style-contact form input[type="submit"] {
+  margin-top: 0.5rem;
+  background-color: rgb(141, 167, 190);
+  color: rgba(255, 255, 255, 0.8);
+  border: solid 1px rgba(255, 255, 255, 0.8);
+}
+
+/*Services/Tjänster styling*/
+.services {
+  display: flex;
+  flex-direction: column;
+  color: rgb(178, 161, 152);
+}
+.services::before {
+  content: "";
+  height: 10vh;
+}
+
+.services article {
+  flex: 1 1 100%;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.services article h3 {
+  text-align: center;
+}
+.services article h3::after {
+  height: 2vh;
+  width: 6rem;
+  margin: 0.5rem auto;
+  display: block;
+  content: "";
+  border-top: solid 1px rgb(178, 161, 152);
+}
+
+.icon > span {
+  font-size: 5rem;
+}
+
+/*Foto-Galleri*/
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.gallery div,
+.gallery h3 {
+  width: 100%;
+  margin: 1rem auto;
+  font-size: 1.5rem;
+  font-family: "Merriweather", serif;
+}
+
+.gallery h3 {
+  text-align: center;
+}
+
+.gallery h3 a {
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+}
+
+.gallery .thumbnail img {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  border: 0.3rem solid rgb(255, 255, 255);
+  height: auto;
+}
+
+/*Sidfot*/
+footer {
+  background: rgb(85, 70, 64);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+footer section {
+  width: 100%;
+  text-align: center;
+}
+
+footer section h2 {
+  margin-top: -1rem;
+  color: rgb(205, 230, 245);
+}
+
+footer section h2::after {
+  display: block;
+  content: "";
+  margin: 1rem auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  width: 6rem;
+}
+
+footer section::after {
+  display: block;
+  content: "";
+  margin: 1rem auto 0 auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  width: 30vw;
+}
+
+footer::before,
+footer::after {
+  display: block;
+  content: "";
+  height: 5vh;
+}
+#map-location {
+  display: inline-block;
+  max-width: 80%;
+}
+
+/*om browsern stöder filter*/
+@supports (filter: opacity()) {
+  .left-col,
+  .right-col,
+  .style-one div,
+  .style-two div {
+    filter: opacity(0.7);
+    -webkit-filter: opacity(0.7);
+  }
+}
+
+@media all and (min-width: 360px) and (max-width: 399px) {
+  .style-one h2,
+  .style-two h2 {
+    font-size: 3rem;
+  }
+}
+@media all and (min-width: 400px) and (max-width: 450px) {
+  .style-one h2,
+  .style-two h2 {
+    font-size: 4rem;
+  }
+}
+@media all and (min-width: 451px) and (max-width: 500px) {
+  .style-one h2,
+  .style-two h2 {
+    font-size: 4rem;
+  }
+}
+@media all and (min-width: 501px) and (max-width: 599px) {
+  .style-one h2,
+  .style-two h2 {
+    font-size: 5rem;
+  }
+}
+@media all and (min-width: 600px) and (max-width: 699px) {
+  .sellingpoint h2,
+  .style-one h2,
+  .style-two h2 {
+    font-size: 6rem;
+  }
+  .gallery .thumbnail {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 700px) and (max-width: 819px) {
+  .sellingpoint h2,
+  .style-one h2,
+  .style-two h2 {
+    font-size: 7rem;
+  }
+}
+
+/*Mellanskärmar (< 640)*/
+
+@media screen and (min-width: 820px) {
+
+  header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .menu-button {
+    display: none;
+  }
+  header h2 {
+    font-size: 3.5rem;
+    flex: 1 1 20%;
+  }
+  header h2 span {
+    font-size: 3.5rem;
+  }
+  nav {
+    width: 100%;
+    background-color: transparent;
+    position: static;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  nav a,
+  nav a:visited {
+    font-size: 0.5rem;
+    color: rgb(247, 178, 189);
+  }
+
+  nav a:hover {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  section.start h1 {
+    margin-top: 80vh;
+    font-size: 4rem;
+    line-height: 1;
+  }
+  section.start h1 span {
+    letter-spacing: 1rem;
+    font-size: 6rem;
+  }
+
+  section.sellingpoint {
+    height: 100vh;
+  }
+
+  section.start {
+    height: 145vh;
+    margin-top: -45vh;
+    background-image: url(../images/adorable-animal-breed-1805164-m.jpg);
+  }
+  div.left-col {
+    background-image: url(../images/adorable-animal-blur-533118m.jpg);
+  }
+  div.right-col {
+    background-image: url(../images/animal-blur-close-up-1035365-sm.jpg);
+  }
+
+  .style-one div {
+    background-image: url(../images/animal-animal-photography-beagle-813467_sm.jpg);
+  }
+  .style-two div {
+    background-image: url(../images/adorable-animals-belgian-malinois-1633522-sm.jpg);
+  }
+
+  .style-contact div {
+    background-image: url(../images/animal-cane-corso-canine-52997-sm.jpg);
+  }
+  .sellingpoint h2,
+  .style-one h2,
+  .style-two h2 {
+    font-size: 8rem;
+  }
+
+  .services {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .services div.style-one {
+    width: 100%;
+  }
+
+  .services article {
+    padding: 1rem;
+    flex-basis: 50%;
+    margin: auto;
+  }
+}
+
+/*Större skärmar*/
+
+@media screen and (min-width: 900px) {
+  section.start {
+    background-image: url(../images/adorable-animal-breed-1805164-m.jpg);
+  }
+  div.left-col {
+    background-image: url(../images/adorable-animal-blur-533118m.jpg);
+  }
+  div.right-col {
+    background-image: url(../images/animal-blur-close-up-1035365-sm.jpg);
+  }
+
+  .style-one div {
+    transform: rotateY(180deg);
+    background-image: url(../images/animal-animal-photography-beagle-813467_sm.jpg);
+  }
+  .style-two div {
+    background-image: url(../images/adorable-animals-belgian-malinois-1633522-sm.jpg);
+  }
+  .style-one h2,
+  .style-two h2 {
+    font-size: 10rem;
+  }
+
+  .style-contact div {
+    background-image: url(../images/animal-cane-corso-canine-52997-sm.jpg);
+  }
+  .style-contact p,
+  .style-contact form {
+    margin: 1rem 25%;
+  }
+
+  .services article {
+    padding: 1rem;
+    flex-basis: 33%;
+  }
+
+  .gallery .thumbnail {
+    width: 33%;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  section.start h1 {
+    margin-top: 80vh;
+    font-size: 5rem;
+    line-height: 1;
+  }
+  section.start h1 span {
+    letter-spacing: 1.5rem;
+    font-size: 8rem;
+  }
+
+  section.start {
+    background-image: url(../images/adorable-animal-breed-1805164-m.jpg);
+  }
+  div.left-col {
+    background-image: url(../images/adorable-animal-blur-533118m.jpg);
+  }
+  div.right-col {
+    background-image: url(../images/animal-blur-close-up-1035365-sm.jpg);
+  }
+
+  .style-one div {
+    background-image: url(../images/animal-animal-photography-beagle-813467_sm.jpg);
+  }
+  .style-two div {
+    background-image: url(../images/adorable-animals-belgian-malinois-1633522-sm.jpg);
+  }
+
+  .style-contact div {
+    background-image: url(../images/animal-cane-corso-canine-52997-sm.jpg);
+  }
+
+  .services article {
+    padding: 1rem;
+    flex-basis: 25%;
+  }
+
+  footer {
+    padding-top: 10vh;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  footer section {
+    width: 33%;
+  }
+  footer section::after {
+    border: none;
+  }
+
+  footer section:nth-child(2) {
+    border-left: 1px solid rgba(255, 255, 255, 0.8);
+    border-right: 1px solid rgba(255, 255, 255, 0.8);
+  }
+  footer section:nth-child(2) span {
+    padding: 1rem;
+    font-size: 3rem;
+  }
+
+  footer section p {
+    line-height: 2;
+  }
+
+  footer p {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .gallery .thumbnail {
+    width: 20%;
+  }
+  .style-one h2,
+  .style-two h2 {
+    font-size: 13rem;
+  }
+  }
