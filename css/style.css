@@ -432,6 +432,9 @@ textarea {
 }
 
 /*Foto-Galleri*/
+section.gallery{
+  padding: 0;
+}
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -458,12 +461,18 @@ textarea {
   font-size: inherit;
 }
 
+.gallery.thumbnail{
+  width: 100%;
+}
+
 .gallery .thumbnail img {
-  display: inline-block;
+  display: block;
   max-width: 100%;
-  width: auto;
+  width: 100%;
   border: 0.3rem solid rgb(255, 255, 255);
-  height: auto;
+  height: 33vh;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
 /*Sidfot*/
@@ -551,8 +560,14 @@ footer::after {
 }
 
 @media only all and (min-width: 700px) and (max-width: 819px){
+  
   .gallery .thumbnail {
     width: 50%;
+  }
+  .gallery .thumbnail img {
+    height: 40vh;
+    width: 100%;
+    object-fit: cover;
   }
   .style-one h2,
   .style-two h2{
@@ -659,6 +674,11 @@ footer::after {
   .gallery .thumbnail {
     width: 50%;
   }
+  .gallery .thumbnail img {
+    height: 40vh;
+    width: 100%;
+    object-fit: cover;
+  }
 }
 
 /*Större skärmar*/
@@ -708,9 +728,13 @@ footer::after {
     padding: 1rem;
     flex-basis: 33%;
   }
-
   .gallery .thumbnail {
-    width: 33%;
+    width: 33%
+  }
+  .gallery .thumbnail img {
+    height: 30vh;
+    width: 100%;
+    object-fit: cover;
   }
 }
 
@@ -757,13 +781,13 @@ footer::after {
   section.style-contact,
   section.services,
   section.gallery {
-    width: 70%;
+    width: 75%;
   }
 
   section.style-two,
   section.style-contact,
   section.services {
-    margin-left: 30%;
+    margin-left: 25%;
   }
 
   .style-one h2
@@ -810,6 +834,15 @@ footer::after {
 
   footer p {
     width: 100%;
+  }
+
+  .gallery .thumbnail {
+    width: 33%
+  }
+  .gallery .thumbnail img {
+    height: 30vh;
+    width: 100%;
+    object-fit: cover;
   }
 }
 
