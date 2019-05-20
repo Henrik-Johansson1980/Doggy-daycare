@@ -51,6 +51,7 @@ input,
 input[type="submit"],
 textarea {
   font-family: "Merriweather", serif;
+  font-size: .9rem;
   line-height: 1.5;
   letter-spacing: 0.1rem;
   font-weight: bolder;
@@ -63,11 +64,12 @@ ul li {
   margin: 5vh 0;
 }
 body {
-  min-width: 320px;
+  min-width: 321px;
   width: 100%;
   display: flex;
   flex-direction: column;
   background-color: rgb(205, 230, 245);
+  overflow-x: hidden;
 }
 
 header {
@@ -208,7 +210,6 @@ section.start h1::after {
 /*Grej med bilder vid sidan*/
 section.sellingpoint {
   display: flex;
-  min-height: 100vh;
   height: auto;
 }
 
@@ -243,6 +244,7 @@ div.right-col {
   background-repeat: no-repeat;
 }
 section.sellingpoint h2 {
+  font-size: 2rem;
   color: rgb(205, 230, 245);
 }
 
@@ -256,7 +258,8 @@ section.sellingpoint h2 {
 
 .sellingpoint p,
 .sellingpoint q {
-  padding: 1rem 0;
+  font-size: 0.8rem;
+  margin: 0.2rem 0;
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -266,6 +269,12 @@ section.sellingpoint h2 {
   margin: 1rem auto 1rem auto;
   border-bottom: 1px solid rgba(255, 255, 255, 0.8);
   width: 6rem;
+}
+
+.sellingpoint q:nth-child(3n-1),
+.sellingpoint p:nth-child(3n) {
+  visibility: hidden;
+  height: 1px;
 }
 
 section.style-one,
@@ -408,6 +417,7 @@ section.gallery {
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: flex-end;
+  max-width: 100%;
 }
 
 .style-contact p,
@@ -513,7 +523,7 @@ section.gallery {
   max-width: 100%;
   width: 100%;
   border: 0.3rem solid rgb(255, 255, 255);
-  height: 33vh;
+  height: 40vh;
   object-fit: cover;
   object-position: 50% 50%;
 }
@@ -534,7 +544,6 @@ footer section {
 }
 
 footer section h2 {
-  margin-top: -1rem;
   color: rgb(205, 230, 245);
 }
 
@@ -549,9 +558,9 @@ footer section h2::after {
 footer section::after {
   display: block;
   content: "";
-  margin: 1rem auto 0 auto;
+  margin: 1.2rem auto;
   border-bottom: 1px solid rgba(255, 255, 255, 0.8);
-  width: 30vw;
+  width: 6rem;
 }
 
 footer::before,
@@ -561,8 +570,9 @@ footer::after {
   height: 5vh;
 }
 #map-location {
+  margin-top: 1rem;
   display: inline-block;
-  max-width: 80%;
+  max-width: 75%;
 }
 
 @media only all and (min-width: 420px) and (max-width: 599px) {
@@ -595,7 +605,7 @@ footer::after {
     width: 50%;
   }
   .gallery .thumbnail img {
-    height: 40vh;
+    height: 45vh;
     width: 100%;
     object-fit: cover;
   }
@@ -645,6 +655,13 @@ footer::after {
   nav a:hover {
     color: rgba(255, 255, 255, 0.8);
   }
+
+  .sellingpoint q:nth-child(3n-1),
+  .sellingpoint p:nth-child(3n) {
+    visibility: visible;
+    height: auto;
+  }
+
   section.start h1 {
     margin-top: 80vh;
     font-size: 4rem;
@@ -698,9 +715,9 @@ footer::after {
   }
 
   .services article {
-    padding: 1rem;
     flex-basis: 50%;
-    margin: auto;
+    min-width: 45%;
+    max-width: 60%;
   }
   .gallery .thumbnail {
     width: 50%;
@@ -751,10 +768,7 @@ footer::after {
     background-image: url(../images/animal-cane-corso-canine-52997-sm.jpg);
   }
 
-  .services article {
-    padding: 1rem;
-    flex-basis: 33%;
-  }
+
   .gallery .thumbnail {
     width: 33%;
   }
@@ -779,15 +793,19 @@ footer::after {
   section.start {
     background-image: url(../images/adorable-animal-breed-1805164-m.jpg);
   }
+
   div.left-col {
+    flex-basis: 25%;
     background-image: url(../images/adorable-animal-blur-533118m.jpg);
   }
 
-  div.center-col{
-    padding: 1rem 15%;
+  div.center-col {
+    flex-basis: 50%;
+    padding: 1rem 10%;
   }
 
   div.right-col {
+    flex-basis: 25%;
     background-image: url(../images/animal-blur-close-up-1035365-sm.jpg);
   }
 
@@ -919,5 +937,18 @@ footer::after {
   .style-contact form {
     width: 45%;
     margin: auto;
+  }
+
+  .services article{
+    flex-basis: 33%;
+    min-width: 25%;
+    max-width: 33%;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .services article{
+    flex-basis: 25%;
+
   }
 }
