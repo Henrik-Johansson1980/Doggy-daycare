@@ -13,9 +13,11 @@
 *,
 html {
   box-sizing: border-box;
-  font-size: 16px;
   margin: 0;
   padding: 0;
+}
+html {
+  font-size: 16px;
 }
 
 section,
@@ -51,7 +53,7 @@ input,
 input[type="submit"],
 textarea {
   font-family: "Merriweather", serif;
-  font-size: .9rem;
+  font-size: 0.9rem;
   line-height: 1.5;
   letter-spacing: 0.1rem;
   font-weight: bolder;
@@ -66,10 +68,6 @@ ul li {
 body {
   min-width: 321px;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(205, 230, 245);
-  overflow-x: hidden;
 }
 
 header {
@@ -82,6 +80,7 @@ header {
   flex-wrap: wrap;
   justify-content: center;
   align-items: stretch;
+  padding: 0.5rem 0;
 }
 
 header h2 {
@@ -121,7 +120,7 @@ nav {
   top: 0;
   left: -210vw;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
   display: flex;
   flex-direction: column;
   z-index: 999;
@@ -171,14 +170,15 @@ header h2,
 header h2 span {
   font-size: 2rem;
 }
-
+main {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(205, 230, 245);
+}
 /*Hero Image*/
 section.start {
   width: 100%;
-  position: relative;
-  top: 0;
-  height: 115vh;
-  margin-top: -15vh;
+  height: 100vh;
   background-image: url(../images/adorable-animal-breed-1805164-sm.jpg);
   background-position: center;
   background-size: cover;
@@ -187,24 +187,39 @@ section.start {
 }
 
 section.start h1 {
-  margin-top: 55vh;
+  margin-top: 58vh;
   color: #554640;
   font-size: 2rem;
   line-height: 1;
 }
+
 section.start h1 span {
   color: rgb(247, 178, 189);
   text-shadow: 2px 2px rgba(85, 70, 64, 0.8);
-  font-size: 4rem;
+  font-size: 3.5rem;
 }
 
 section.start h1::before,
 section.start h1::after {
   display: block;
-  margin: 1rem auto;
+  margin: 0.45rem auto;
   width: 6rem;
   content: "";
   border-bottom: solid 1px rgb(85, 70, 64);
+}
+
+section.start a {
+  display: inline-block;
+  margin: 0.5rem auto;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgb(85, 70, 64);
+  border-radius: 5%;
+  -webkit-border-radius: 5%;
+  -moz-border-radius: 5%;
+  -ms-border-radius: 5%;
+  -o-border-radius: 5%;
+  color: rgb(85, 70, 64);
+  text-decoration: none;
 }
 
 /*Grej med bilder vid sidan*/
@@ -562,8 +577,8 @@ footer section::after {
   border-bottom: 1px solid rgba(255, 255, 255, 0.8);
   width: 6rem;
 }
-footer h2 span{
- font-size: inherit;
+footer h2 span {
+  font-size: inherit;
 }
 
 footer::before,
@@ -579,15 +594,32 @@ footer::after {
 }
 
 @media only all and (min-width: 420px) and (max-width: 599px) {
+  section.start h1 {
+    margin-top: 60vh;
+  }
+  section.start h1 span {
+    font-size: 4.5rem;
+  }
   .style-one h2,
   .style-two h2 {
     font-size: 4rem;
   }
+
+  section.sellingpoint h2 {
+    font-size: 3rem;
+  }
 }
 
 @media all and (min-width: 600px) and (max-width: 699px) {
-  .gallery .thumbnail {
-    width: 50%;
+  section.start h1 {
+    margin-top: 60vh;
+  }
+  section.start h1 span {
+    font-size: 4.5rem;
+  }
+
+  section.sellingpoint h2 {
+    font-size: 3.5rem;
   }
   .style-one ul,
   .style-two ul {
@@ -601,9 +633,21 @@ footer::after {
   .style-two h2 {
     font-size: 5.5rem;
   }
+  .gallery .thumbnail {
+    width: 50%;
+  }
 }
 
 @media only all and (min-width: 700px) and (max-width: 819px) {
+  section.start h1 {
+    margin-top: 60vh;
+  }
+  section.start h1 span {
+    font-size: 5.5rem;
+  }
+  section.sellingpoint h2 {
+    font-size: 4rem;
+  }
   .gallery .thumbnail {
     width: 50%;
   }
@@ -659,26 +703,37 @@ footer::after {
     color: rgba(255, 255, 255, 0.8);
   }
 
+  section.start h1 {
+    margin-top: 45vh;
+    font-size: 3rem;
+    line-height: 1;
+  }
+  section.start h1 span {
+    letter-spacing: 1rem;
+    font-size: 5rem;
+  }
+  section.start {
+    height: 100vh;
+    background-image: url(../images/adorable-animal-breed-1805164-m.jpg);
+    background-position-y: 80%;
+  }
+
+  section.sellingpoint {
+    min-height: 100vh;
+    height: auto;
+  }
+
+  section.sellingpoint h2 {
+    font-size: 4.5rem;
+    margin-bottom: 3rem;
+  }
+
   .sellingpoint q:nth-child(3n-1),
   .sellingpoint p:nth-child(3n) {
     visibility: visible;
     height: auto;
   }
 
-  section.start h1 {
-    margin-top: 80vh;
-    font-size: 4rem;
-    line-height: 1;
-  }
-  section.start h1 span {
-    letter-spacing: 1rem;
-    font-size: 6rem;
-  }
-  section.start {
-    height: 200vh;
-    margin-top: -45vh;
-    background-image: url(../images/adorable-animal-breed-1805164-m.jpg);
-  }
   div.left-col {
     background-image: url(../images/adorable-animal-blur-533118m.jpg);
   }
@@ -736,6 +791,7 @@ footer::after {
 
 @media screen and (min-width: 900px) {
   section.start {
+    height: 100vh;
     background-image: url(../images/adorable-animal-breed-1805164-m.jpg);
   }
   div.left-col {
@@ -771,7 +827,6 @@ footer::after {
     background-image: url(../images/animal-cane-corso-canine-52997-sm.jpg);
   }
 
-
   .gallery .thumbnail {
     width: 33%;
   }
@@ -783,18 +838,22 @@ footer::after {
 }
 
 @media screen and (min-width: 950px) {
+  section.start {
+    height: 110vh;
+  }
   section.start h1 {
-    margin-top: 80vh;
-    font-size: 5rem;
+    margin-top: 40vh;
+    font-size: 4rem;
     line-height: 1;
   }
   section.start h1 span {
     letter-spacing: 1.5rem;
-    font-size: 8rem;
+    font-size: 7rem;
   }
 
   section.start {
     background-image: url(../images/adorable-animal-breed-1805164-m.jpg);
+    background-position-y: 70%;
   }
 
   div.left-col {
@@ -899,17 +958,31 @@ footer::after {
     margin: auto;
   }
 
-  footer p:last-child{
+  footer p:last-child {
     margin: 5vh 0 10vh 0;
   }
 
-  footer h2{
+  footer h2 {
     margin-top: 10vh;
   }
-
 }
 
 @media screen and (min-width: 1200px) {
+  section.start h1 {
+    margin-top: 40vh;
+    font-size: 4rem;
+    line-height: 1;
+  }
+  section.start h1 span {
+    letter-spacing: 1.5rem;
+    font-size: 7rem;
+  }
+
+  section.start {
+    height: 100vh;
+    background-image: url(../images/adorable-animal-breed-1805164-lg.jpg);
+    background-position-y: 65%;
+  }
   nav a,
   nav a:visited {
     margin: auto;
@@ -922,12 +995,6 @@ footer::after {
     width: 25%;
   }
 
-  .style-one div,
-  .gallery .style-one div,
-  .style-two div {
-    width: 25vw;
-    height: 25vw;
-  }
   .style-one h2,
   .style-two h2 {
     font-size: 9rem;
@@ -949,49 +1016,84 @@ footer::after {
   }
 
   .style-contact form {
-    width: 60%;
+    width: 80%;
     margin: 1rem auto;
   }
 
-  .services article{
+  .services article {
     flex-basis: 33%;
     min-width: 25%;
     max-width: 33%;
   }
 }
 
-
-
 @media screen and (min-width: 1300px) {
-  section.style-one,
-  section.style-two{
-   width: 66%;
+  section.start {
+    height: 120vh;
+    background-image: url(../images/adorable-animal-breed-1805164-lg.jpg);
+    background-position-y: 50%;
   }
-  section.style-one{ 
+
+  section.start h1 {
+    margin-top: 55vh;
+  }
+
+  section.style-one,
+  section.style-two {
+    width: 66%;
+  }
+  section.style-one {
     margin-right: 34%;
   }
   section.style-two,
-  section.style-contact{ 
+  section.style-contact {
     margin-left: 34%;
   }
 
-  section.services{
+  section.services {
     padding-bottom: 10vh;
   }
 }
-@media screen and (min-width: 1600px) {
-  section.style-one,
-  section.style-two{
-   width: 55%;
+@media only all and (min-width: 1600px) {
+  .style-one div {
+    width: 50vw;
+    height: 50vh;
   }
-  section.style-one{ 
+  .style-two div {
+    width: 50vw;
+    height: 50vh;
+  }
+
+  #services .style-two div {
+    width: 50vw;
+    height: 50vh;
+  }
+
+  section.style-one,
+  section.style-two {
+    width: 60%;
+  }
+  section.style-one {
     margin-right: 45%;
   }
-  section.style-two,
-  section.style-contact{ 
-    margin-left: 45%;
+  section.style-two {
+    margin-left: 40%;
   }
-  .services article{
+
+  #services,
+  #gallery {
+    width: 70%;
+  }
+
+  #services {
+    margin-left: 30%;
+  }
+
+  #apply {
+    width: 60%;
+    margin-left: 40%;
+  }
+  .services article {
     flex-basis: 25%;
   }
 }
