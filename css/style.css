@@ -1,15 +1,8 @@
-/*Importera typsnitt*/
+/*Importera typsnitt från google fonts*/
 @import url("https://fonts.googleapis.com/css?family=Merriweather");
 @import url("https://fonts.googleapis.com/css?family=Six+Caps");
 
-/*Färger
-  #CDE6F5 = (205,230,245)
-  #554640 = (85,70,64)
-  #F7B2BD = (247,178,189)
-  #8DA7BE =  (141,167,190)
-  #B2A198 = (178,161,152)
-*/
-
+/*Generella inställningar*/
 *,
 html {
   box-sizing: border-box;
@@ -25,6 +18,7 @@ footer {
   width: 100%;
 }
 
+/*Typsnitt mm för rubriker*/
 h1,
 h2,
 h3 {
@@ -44,6 +38,7 @@ h3 {
   font-size: 2.5rem;
 }
 
+/*Typsnitt mm för annan text*/
 p,
 q,
 a,
@@ -53,40 +48,56 @@ input,
 input[type="submit"],
 textarea {
   font-family: "Merriweather", serif;
-  font-size: 0.9rem;
   line-height: 1.5;
-  letter-spacing: 0.1rem;
-  font-weight: bolder;
-}
-ul {
-  list-style-type: none;
+  letter-spacing: 0.2rem;
 }
 
-ul li {
-  margin: 5vh 0;
-}
+/*Stätter en min width på 320px för det är den minsta bredden jag
+  testat för under utvecklingen. Detta motsvarar en Iphone 5 */
 body {
-  min-width: 321px;
+  min-width: 320px;
+  min-height: 320px;
   width: 100%;
 }
 
+/*Styling av oordnade listor*/
+ul {
+  list-style-type: none;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+ul li {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/*  Headern innehåller en Logotyp och menyknapp/meny. Denna får
+    position fixed och höjt z-index för att alltid ligga över sidinnehållet.
+    Eftersom detta är för
+*/
 header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  background-color: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95); /*Använder rgba här för att få lite opacitet*/
   z-index: 2;
-  color: rgb(247, 178, 189);
+  color: rgb(168, 36, 58);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: stretch;
-  padding: 0.5rem 0;
+  padding: 2%;
 }
 
+/*Styling av Logotypexempel*/
 header h2 {
   margin-left: 1rem;
   flex: 1 1 50%;
-  text-shadow: 1px 1px rgba(85, 70, 64, 0.8);
+}
+
+header h2,
+header h2 span {
+  font-size: 2rem;
 }
 
 /*Menyknapp*/
@@ -95,35 +106,32 @@ header h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: rgb(247, 178, 189);
+  color: rgb(168, 36, 58);
   text-decoration: none;
   padding: 0 1rem;
 }
 
-/* Screen reader only */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-/*Meny*/
-
+/* 
+  Meny
+  På små enheter används absolutpositionering för att placera navmenyn off-canvas.
+  Menyn får även högst z-index så att den ligger överst.
+  Animeringen görs med CSS-transition. Jag satte även overflow-y till scroll
+  och använde -webkit prefixet för att lösa scrollningsproblem på Iphone eftersom
+  det inte gick att scrolla menyn annars.
+*/
 nav {
   width: 100%;
   position: absolute;
   top: 0;
   left: -210vw;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.95);
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  text-align: center;
   z-index: 999;
+  /*Animering*/
   transition: left 0.5s ease, box-shadow 0.5s ease;
   -webkit-transition: left 0.5s ease, box-shadow 0.5s ease;
   -moz-transition: left 0.5s ease, box-shadow 0.5s ease;
@@ -131,74 +139,85 @@ nav {
   -o-transition: left 0.5s ease, box-shadow 0.5s ease;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 1rem;
 }
 
+/*Styling av menylänkar*/
 nav a,
 nav a:visited {
-  margin: auto;
+  width: 100%;
   text-decoration: none;
-  padding: 1rem;
-  color: rgb(247, 178, 189);
+  font-weight: bold;
+  color: rgb(168, 36, 58);
+  padding: 2% 0;
 }
 
+/*Ändra utseende på länkar när de har fokus eller vid hover*/
 nav a:hover,
 nav a:focus,
 .menu-button:focus,
 .menu-button:hover {
-  background-color: rgba(205, 230, 245, 1);
-  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(205, 230, 245);
+  color: rgb(255, 255, 255);
 }
 
+/*Styling av det spanelement (font awesome) som ritar
+  hamburgermeny och krysset för stängknappen.
+*/
 #menu-close span,
 .menu-button span {
   font-size: 2rem;
 }
 
+/*Absolut postitionering av meny-stängningsknappen*/
 #menu-close {
+  width: 15%;
   position: absolute;
-  top: 0;
-  right: 1rem;
+  right: 2%;
+  top: 1vh;
 }
 
-nav:target,
-nav[aria-expanded="true"] {
+/**/
+nav:target {
+  top:0;
   left: 0;
 }
 
-header h2,
-header h2 span {
-  font-size: 2rem;
-}
 main {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   background-color: rgb(205, 230, 245);
 }
-/*Hero Image*/
+/*Denna sektion visas när man landar på sidan. Elementets höjd 
+  sattes lite större än 100vh för att det skulle fungera om sidan
+  visades i landskapsläge på mobilen.
+*/
 section.start {
   width: 100%;
-  height: 100vh;
+  height: 125vh;
   background-image: url(../images/adorable-animal-breed-1805164-sm.jpg);
-  background-position: center;
   background-size: cover;
+  background-position: 60% 50%;
   background-repeat: no-repeat;
   text-align: center;
 }
 
+/*Startsektionens rubrik*/
 section.start h1 {
-  margin-top: 58vh;
+  margin-top: 60vh;
   color: #554640;
   font-size: 2rem;
   line-height: 1;
 }
 
+/*Dagisets namn i rubriken*/
 section.start h1 span {
   color: rgb(247, 178, 189);
-  text-shadow: 2px 2px rgba(85, 70, 64, 0.8);
+  text-shadow: 2px 2px rgb(85, 70, 64);
   font-size: 3.5rem;
 }
 
+/* Här använder jag before och after för att skapa de horisontella
+ avdelarna*/
 section.start h1::before,
 section.start h1::after {
   display: block;
@@ -208,6 +227,8 @@ section.start h1::after {
   border-bottom: solid 1px rgb(85, 70, 64);
 }
 
+/*Knapp som länkar till nästa sektion mest för att antyda att
+det finns mer innehåll nedanför startbilden.*/
 section.start a {
   display: inline-block;
   margin: 0.5rem auto;
@@ -222,15 +243,18 @@ section.start a {
   text-decoration: none;
 }
 
-/*Grej med bilder vid sidan*/
+/*Sektionen med bilder vid sidan. Tänkt att fungera som en
+  del där man kan dela med sig av omdömen /rescensioner från kunder. 
+*/
 section.sellingpoint {
   display: flex;
   height: auto;
 }
 
+/*Kolumnerna med bilder*/
 div.left-col,
 div.right-col {
-  flex-basis: 20%;
+  flex: 2;
   background-color: rgb(205, 230, 245);
 }
 
@@ -242,22 +266,25 @@ div.left-col {
   background-repeat: no-repeat;
 }
 
+/*Kolumnen med text*/
 div.center-col {
-  flex-basis: 60%;
+  flex: 3;
   background-color: rgb(85, 70, 64);
   padding: 1rem 5%;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
 }
 
 div.right-col {
-  background-image: url(../images/animal-blur-close-up-1035365-sm.jpg);
+  background-image: url(../images/animal-canine-cute-1493110-sm.jpg);
   background-size: cover;
-  background-position-x: 75%;
+  background-position-x: 50%;
   background-color: rgb(205, 230, 245);
   background-repeat: no-repeat;
 }
+
 section.sellingpoint h2 {
   font-size: 2rem;
   color: rgb(205, 230, 245);
@@ -267,7 +294,7 @@ section.sellingpoint h2 {
   display: block;
   content: "";
   margin: 1rem auto 1rem auto;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgb(255, 255, 255);
   width: 6rem;
 }
 
@@ -275,14 +302,14 @@ section.sellingpoint h2 {
 .sellingpoint q {
   font-size: 0.8rem;
   margin: 0.2rem 0;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .sellingpoint p:after {
   display: block;
   content: "";
   margin: 1rem auto 1rem auto;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.95);
   width: 6rem;
 }
 
@@ -297,9 +324,14 @@ section.style-two,
 section.style-contact,
 section.services,
 section.gallery {
-  padding: 1rem 10vw;
+  padding: 5% 10%;
   min-height: 100vh;
   height: auto;
+}
+
+section.style-one p,
+section.style-two p{
+  margin-top: 1rem;
 }
 
 .style-one,
@@ -307,37 +339,36 @@ section.gallery {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  color: rgb(178, 161, 152);
-  background-color: rgb(238, 238, 238);
+  justify-content: space-around;	
+  color:rgb(84,73,68);
+  background-color: rgb(250, 250, 250);
 }
 
 .style-two,
 .style-contact,
 .services {
-  background-color: rgb(141, 167, 190);
-  color: rgba(255, 255, 255, 0.8);
+  background-color: 	rgb(65,91,113);
+  color: rgba(255, 255, 255, 0.95);
 }
-/* Sektioner stylade på olika sätt för att anv. ska kunna variera innehållet på sidan
- * lättare.
-*/
 
 /*Textstil (Rubrik) för klasserna stil 1 och 2*/
 .style-one h2 {
-  padding: 2vw;
-  font-size: 2.5rem;
+  margin-left: 5%;
+  font-size: 2rem;
   line-height: 1.2;
-  text-shadow: 1px 1px rgba(85, 70, 64, 0.8);
+  text-shadow: 1px 1px rgb(85, 70, 64);
   color: rgb(247, 178, 189);
-  width: 50%;
-  flex: 1 1 50%;
+  flex: 2;
+  max-width: 50%;
+  min-width: 50%;
 }
-
+/*Styling av bakgrundsbild på div element i style-one*/
 .style-one div {
   width: 45vw;
   height: 45vw;
-  flex: 1 1 45%;
-  margin-left: -5vw;
-  background-color: rgb(205, 230, 245);
+  flex: 1;
+  min-width: 45%;
+  max-width: 50%;
   border: solid 0.5rem rgb(205, 230, 245);
   background-image: url(../images/animal-animal-photography-beagle-813467_sm.jpg);
   background-size: cover;
@@ -350,6 +381,8 @@ section.gallery {
   -ms-transform: rotateY(180deg);
   -o-transform: rotateY(180deg);
 }
+
+/*Styling av bakgrundsbild för galleriet*/
 .gallery .style-one div {
   background-image: url(../images/animal-brown-close-up-1438798-sm.jpg);
   transform: rotateY(0);
@@ -359,6 +392,7 @@ section.gallery {
   -o-transform: rotateY(0);
 }
 
+/*Styling av bakgrundsbild för en dag på dagis sektionen*/
 #one_day.style-one div {
   background-image: url(../images/animal-blur-close-up-1035365-sm.jpg);
   transform: rotateY(0);
@@ -368,29 +402,27 @@ section.gallery {
   -o-transform: rotateY(0);
 }
 
-/*Stil 2- För denna stil ändras ordningen på objekten*/
+/*Stil 2- För denna stil ändras ordningen på de olika delarna*/
 .style-two h2 {
-  padding: 2vw;
   order: 1;
-  margin-left: -5vw;
-  font-size: 2.5rem;
+  font-size: 2rem;
+  margin-right: 5%;
   line-height: 1.2;
-  text-shadow: 1px 1px rgba(85, 70, 64, 0.8);
+  text-shadow: 1px 1px rgb(85, 70, 64);
   color: rgb(247, 178, 189);
-  width: 50%;
-  flex: 1 1 50%;
+  max-width: 50%;
+  min-width: 50%;
+  flex:2;
   text-align: right;
 }
-.style-two p {
-  order: 3;
-}
-.style-two ul {
-  order: 4;
-}
+
+/*Bakgrundsbild på style-two div*/
 .style-two div {
   width: 45vw;
   height: 45vw;
-  flex: 1 1 50%;
+  flex: 1;
+  max-width: 50%;
+  min-width: 45%;
   background-color: rgb(205, 230, 245);
   border: solid 0.5rem rgb(205, 230, 245);
   order: 2;
@@ -401,17 +433,19 @@ section.gallery {
   border: solid 0.5rem rgb(205, 230, 245);
 }
 
-.style-contact::after {
-  height: 3vh;
-  background-color: rgb(141, 167, 190);
-  content: "";
+.style-two p {
+  order: 3;
+}
+.style-two ul {
+  order: 4;
 }
 
+/*Styling av div i området med kontaktformuläret*/
 .style-contact div {
   width: 45vw;
   height: 45vw;
-  flex: 1 1 45%;
-  margin-left: 0;
+  flex: 1;
+  max-width: 50%;
   background-color: rgb(205, 230, 245);
   border: solid 0.5rem rgb(205, 230, 245);
   background-image: url(../images/animal-cane-corso-canine-52997-sm.jpg);
@@ -419,11 +453,18 @@ section.gallery {
   background-position-x: 25%;
   background-repeat: no-repeat;
   border: solid 0.5rem rgb(205, 230, 245);
+  /*Nollställ rotationen från style-one*/
   transform: rotateY(0deg);
   -webkit-transform: rotateY(0deg);
   -moz-transform: rotateY(0deg);
   -ms-transform: rotateY(0deg);
   -o-transform: rotateY(0deg);
+}
+.style-contact h2 {
+  flex: 2;
+  max-width: 50%;
+  margin-left: 5%;
+
 }
 
 /*Styling av kontaktformulär*/
@@ -431,31 +472,38 @@ section.gallery {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  justify-content: flex-end;
+  justify-content: flex-start;
   max-width: 100%;
 }
 
 .style-contact p,
 .style-contact form {
-  margin: 0.5rem 0;
+  margin-bottom: 0.5rem;
 }
 
 .style-contact form label {
   padding: 0.5rem 0;
-  flex: 1 1 25%;
+  width: 25%;
 }
 
 .style-contact form input[type="text"],
 .style-contact form input[type="email"],
-.style-contact form input[type="submit"] textarea {
+.style-contact form input[type="submit"] {
   margin: 0.5rem 0;
   padding: 0.5rem;
-  flex: 1 1 75%;
+  width: 75%;
   border: none;
+}
+.style-contact form input[type="submit"] {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  width: 25%;
+  border: none;
+  align-self: flex-end;
 }
 
 .style-contact form textarea {
-  flex: 1 1 100%;
+  width: 100%;
   padding: 0.5rem;
   border: none;
 }
@@ -463,52 +511,55 @@ section.gallery {
 .style-contact form input[type="submit"] {
   margin-top: 0.25rem;
   background-color: rgb(141, 167, 190);
-  color: rgba(255, 255, 255, 0.8);
-  border: solid 1px rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.95);
+  border: solid 1px rgba(255, 255, 255, 0.95);
   padding: 0.5rem;
 }
 
 /*Services/Tjänster styling*/
 .services {
   display: flex;
-  flex-direction: column;
-  background-color: rgb(141, 167, 190);
-  color: rgba(255, 255, 255, 0.8);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: 	rgb(65,91,113);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .services article {
-  flex: 1 1 100%;
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+ width: 100%;
+ padding: 0 2%;
+ display: flex;
+ flex-wrap: wrap;
+}
+
+.services .style-two {
+  width: 100%;
+}
+
+.services article h3 {
+  width: 100%;
   text-align: center;
+  margin-top: 1rem;
 }
 
-.services article h3::after {
-  height: 2vh;
-  width: 6rem;
-  margin: 0.5rem auto;
-  display: block;
-  content: "";
-  border-top: solid 1px rgb(178, 161, 152);
-}
-
-.icon > span {
-  font-size: 4.5rem;
+.services article span {
+  width: 100%;
+  text-align: center;
+  font-size: 4rem;
 }
 
 /*Foto-Galleri*/
 section.gallery {
   padding: 1rem;
 }
+
 .gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  background-color: rgb(238, 238, 238);
-  color: rgb(178, 161, 152);
+  background-color: rgb(250, 250, 250);
+  color:rgb(84,73,68);
 }
 
 .gallery div,
@@ -533,6 +584,8 @@ section.gallery {
   width: 100%;
 }
 
+/*Objekt fit gör att man kan manipulera bilder på ett sätt som 
+ liknar CSS-background*/
 .gallery .thumbnail img {
   display: block;
   max-width: 100%;
@@ -543,13 +596,13 @@ section.gallery {
   object-position: 50% 50%;
 }
 
-/*Sidfot*/
+/*Styling av Sidfot*/
 footer {
   background: rgb(85, 70, 64);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgb(255, 255, 255);
   text-align: center;
 }
 
@@ -566,7 +619,7 @@ footer section h2::after {
   display: block;
   content: "";
   margin: 1rem auto;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgb(255, 255, 255);
   width: 6rem;
 }
 
@@ -574,7 +627,7 @@ footer section::after {
   display: block;
   content: "";
   margin: 1.2rem auto;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgb(255, 255, 255);
   width: 6rem;
 }
 footer h2 span {
@@ -587,13 +640,24 @@ footer::after {
   content: "";
   height: 5vh;
 }
+
 #map-location {
   margin-top: 1rem;
   display: inline-block;
   max-width: 75%;
 }
 
-@media only all and (min-width: 420px) and (max-width: 599px) {
+/*Fix för en bugg som inte visar hela menyn i landskapsläge*/
+@media all and (max-height: 420px){
+  nav a{
+    padding: 0;
+    margin-bottom: 1%;
+  }
+
+}
+
+/*Mindre Ändringar av textstorlek m.m. för skärmar 420-599px*/
+@media all and (min-width: 420px) and (max-width: 599px) {
   section.start h1 {
     margin-top: 60vh;
   }
@@ -608,8 +672,13 @@ footer::after {
   section.sellingpoint h2 {
     font-size: 3rem;
   }
+
+  .services article {
+    max-width: 70%;
+  }
 }
 
+/*Mindre Ändringar av textstorlek m.m. för skärmar 620-699px*/
 @media all and (min-width: 600px) and (max-width: 699px) {
   section.start h1 {
     margin-top: 60vh;
@@ -621,14 +690,11 @@ footer::after {
   section.sellingpoint h2 {
     font-size: 3.5rem;
   }
-  .style-one ul,
-  .style-two ul {
-    padding: 5vw 10vw;
+
+  .services article {
+    max-width: 75%;
   }
 
-  article p {
-    padding: 2vw 10vw;
-  }
   .style-one h2,
   .style-two h2 {
     font-size: 5.5rem;
@@ -637,8 +703,8 @@ footer::after {
     width: 50%;
   }
 }
-
-@media only all and (min-width: 700px) and (max-width: 819px) {
+/*Mindre Ändringar av textstorlek m.m. för skärmar 700-819px*/
+@media all and (min-width: 700px) and (max-width: 819px) {
   section.start h1 {
     margin-top: 60vh;
   }
@@ -648,6 +714,11 @@ footer::after {
   section.sellingpoint h2 {
     font-size: 4rem;
   }
+  .services article {
+    max-width: 75%;
+    margin: auto;
+  }
+
   .gallery .thumbnail {
     width: 50%;
   }
@@ -662,45 +733,44 @@ footer::after {
   }
 }
 
-/*Mellanskärmar (< 640)*/
-@media screen and (min-width: 820px) {
+/*Här har jag dragit gränsen mellan små och stora skärmar och
+ändrar menyns utseende för första gången.*/
+@media all and (min-width: 820px) {
   header {
-    height: auto;
-    align-items: flex-start;
-    padding-top: 1rem;
+    padding:0;
+    align-items: center;
   }
   .menu-button {
     display: none;
   }
   header h2 {
-    margin-bottom: 1rem;
-    flex: 1 1 35%;
-    font-size: 3.5rem;
+    flex-basis: 30%;
+    max-width: 30%;
+    font-size: 3rem;
   }
   header h2 span {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
+
   nav {
-    flex: 1 1 60%;
+    width: 65%;
     position: static;
-    height: auto;
-    margin: auto;
     background-color: transparent;
-    flex-direction: row;
-    flex-wrap: wrap;
+    height: auto;
+    margin-top: 1%;
   }
 
   nav a,
   nav a:visited {
-    margin: auto;
-    flex: 1 1 33%;
-    font-size: 0.5rem;
-    padding: 0.2rem 0;
-    color: rgb(247, 178, 189);
+    padding: .5%;
+    margin: 0;
+    font-size: .7rem;
+    text-align: left;
+    width: 30%;
   }
 
   nav a:hover {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgb(255, 255, 255);
   }
 
   section.start h1 {
@@ -715,7 +785,7 @@ footer::after {
   section.start {
     height: 100vh;
     background-image: url(../images/adorable-animal-breed-1805164-m.jpg);
-    background-position-y: 80%;
+    background-position-y: 50%;
   }
 
   section.sellingpoint {
@@ -728,34 +798,25 @@ footer::after {
     margin-bottom: 3rem;
   }
 
+  /*Visa tidigare dolda element d.v.s mer skryt på större skärmar.*/
   .sellingpoint q:nth-child(3n-1),
   .sellingpoint p:nth-child(3n) {
     visibility: visible;
     height: auto;
   }
 
+  /*Öka kvalitet på bilderna i skryt-området*/
   div.left-col {
     background-image: url(../images/adorable-animal-blur-533118m.jpg);
   }
   div.right-col {
-    background-image: url(../images/animal-blur-close-up-1035365-sm.jpg);
+    background-image: url(../images/animal-canine-cute-1493110-m.jpg);
   }
 
   .style-one div,
   .style-two div {
-    width: 25vw;
-    height: 25vw;
-  }
-
-  .style-one div {
-    background-image: url(../images/animal-animal-photography-beagle-813467_sm.jpg);
-  }
-  .style-two div {
-    background-image: url(../images/adorable-animals-belgian-malinois-1633522-sm.jpg);
-  }
-
-  .style-contact div {
-    background-image: url(../images/animal-cane-corso-canine-52997-sm.jpg);
+    width: 35vw;
+    height: 35vw;
   }
 
   .sellingpoint h2,
@@ -768,14 +829,16 @@ footer::after {
     flex-direction: row;
     flex-wrap: wrap;
   }
-  .services div.style-one {
+  .services .style-one {
     width: 100%;
   }
 
+  .services {
+    align-items: flex-start;
+    justify-content: space-around;
+  }
   .services article {
-    flex-basis: 50%;
-    min-width: 45%;
-    max-width: 60%;
+    flex-basis: 45%;
   }
   .gallery .thumbnail {
     width: 50%;
@@ -787,25 +850,13 @@ footer::after {
   }
 }
 
-/*Större skärmar*/
 
-@media screen and (min-width: 900px) {
-  section.start {
-    height: 100vh;
-    background-image: url(../images/adorable-animal-breed-1805164-m.jpg);
-  }
-  div.left-col {
-    background-image: url(../images/adorable-animal-blur-533118m.jpg);
-  }
-  div.right-col {
-    background-image: url(../images/animal-blur-close-up-1035365-sm.jpg);
-  }
-
+@media all and (min-width: 900px) {
   .style-one div,
   .style-two div,
   .style-contact div {
-    width: 33vw;
-    height: 33vw;
+    width: 30vw;
+    height: 30vw;
     background-color: rgb(205, 230, 245);
     border: solid 0.5rem rgb(205, 230, 245);
   }
@@ -837,55 +888,26 @@ footer::after {
   }
 }
 
-@media screen and (min-width: 950px) {
+/*Vid denna storlek minskas bredden på sidans olika sektioner (bortsett från
+ start och header) och skjuts åt sidan så att bakgrundsfärgen lyser igenom 
+ för att ge sidan ett lite intressantare
+ utseende. Här ändras även sidfoten till att visa innehållet i tre kolumner.*/
+@media all and (min-width: 950px) {
   section.start {
     height: 110vh;
   }
   section.start h1 {
-    margin-top: 40vh;
-    font-size: 4rem;
+    margin-top: 50vh;
+    font-size: 3rem;
     line-height: 1;
   }
   section.start h1 span {
     letter-spacing: 1.5rem;
-    font-size: 7rem;
+    font-size: 6rem;
   }
 
   section.start {
-    background-image: url(../images/adorable-animal-breed-1805164-m.jpg);
-    background-position-y: 70%;
-  }
-
-  div.left-col {
-    flex-basis: 25%;
-    background-image: url(../images/adorable-animal-blur-533118m.jpg);
-  }
-
-  div.center-col {
-    flex-basis: 50%;
-    padding: 1rem 10%;
-  }
-
-  div.right-col {
-    flex-basis: 25%;
-    background-image: url(../images/animal-blur-close-up-1035365-sm.jpg);
-  }
-
-  .style-one div {
-    margin: 1rem 0;
-    background-image: url(../images/animal-animal-photography-beagle-813467_sm.jpg);
-  }
-  .style-two div {
-    background-image: url(../images/adorable-animals-belgian-malinois-1633522-sm.jpg);
-  }
-
-  .style-contact div {
-    background-image: url(../images/animal-cane-corso-canine-52997-sm.jpg);
-  }
-
-  .services article {
-    padding: 1rem;
-    flex-basis: 25%;
+    background-position-y: 50%;
   }
 
   section.style-one,
@@ -906,16 +928,14 @@ footer::after {
     font-size: 4rem;
   }
 
-  .style-one p,
-  .style-two p {
+  .style-one div,
+  .style-two div{
     width: 100%;
-    text-align: justify;
-    margin: 1rem 0;
   }
-  .style-one ul,
-  .style-two ul {
+  .style-one p,
+  .style-two p,
+  .style-one ul {
     width: 100%;
-    text-align: justify;
   }
 
   .gallery .thumbnail {
@@ -936,13 +956,16 @@ footer::after {
   footer section {
     width: 33%;
   }
+
+  /*Ta bort border under sektionen*/
   footer section::after {
     border: none;
   }
 
+  /*Visa border vid sidorna av mellanelementet*/
   footer section:nth-child(2) {
-    border-left: 1px solid rgba(255, 255, 255, 0.8);
-    border-right: 1px solid rgba(255, 255, 255, 0.8);
+    border-left: 1px solid rgba(255, 255, 255, 0.95);
+    border-right: 1px solid rgba(255, 255, 255, 0.95);
   }
   footer section:nth-child(2) span {
     padding: 1rem;
@@ -967,28 +990,35 @@ footer::after {
   }
 }
 
-@media screen and (min-width: 1200px) {
+/*Vid denna brypunkt ändrar menyn utseende för sista gången och mycket av
+sidans text ändras från en till flera kolumner.*/
+@media  all and (min-width: 1200px) {
   section.start h1 {
-    margin-top: 40vh;
-    font-size: 4rem;
+    margin-top: 45vh;
+    font-size: 3.5rem;
     line-height: 1;
   }
   section.start h1 span {
-    letter-spacing: 1.5rem;
-    font-size: 7rem;
+    letter-spacing: 1.2rem;
+    font-size: 6rem;
   }
 
   section.start {
     height: 100vh;
     background-image: url(../images/adorable-animal-breed-1805164-lg.jpg);
-    background-position-y: 65%;
+    background-position-y: 50%;
   }
+
   nav a,
   nav a:visited {
-    margin: auto;
-    flex: 1 1 25%;
-    padding: 0.2rem 0;
-    color: rgb(247, 178, 189);
+    font-size: .8rem;
+    max-width: 25%;
+    padding: .5%;
+  }
+
+  nav a:hover,
+  nav a:focus {
+    color: rgb(255, 255, 255);
   }
 
   .gallery .thumbnail {
@@ -997,87 +1027,74 @@ footer::after {
 
   .style-one h2,
   .style-two h2 {
-    font-size: 9rem;
+    font-size: 8rem;
   }
 
   .style-contact {
     height: 100vh;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
   }
-  .style-contact div {
-    width: 100%;
-  }
-  .style-contact p {
-    width: 45%;
-    align-self: flex-start;
+
+  .style-contact p{
+    flex: .5;
+    min-width: 50%;
+    align-self: baseline;
   }
 
   .style-contact form {
-    width: 80%;
-    margin: 1rem auto;
-  }
-
-  .services article {
-    flex-basis: 33%;
-    min-width: 25%;
-    max-width: 33%;
+    width: 90%;
   }
 }
 
-@media screen and (min-width: 1300px) {
+@media all and (min-width: 1300px) {
   section.start {
-    height: 120vh;
-    background-image: url(../images/adorable-animal-breed-1805164-lg.jpg);
+    height: 110vh;
     background-position-y: 50%;
   }
 
   section.start h1 {
-    margin-top: 55vh;
+    margin-top: 40vh;
+  }
+  section.start h1 span {
+    font-size: 7rem;
+  }
+  
+  section.style-one div,
+  section.style-two div, 
+  .services div,
+  .gallery div {
+    max-height: 400px;
+  }
+ 
+  section.style-one p,
+  section.style-one ul{
+    flex: .5;
+    padding: 2%;
+    align-self: baseline;
+  }
+  
+  section.style-two p,
+  section.style-two ul{
+    flex: .5;
+    padding: 2%;
+    align-self: baseline;
   }
 
-  section.style-one,
-  section.style-two {
-    width: 66%;
+  .services article {
+    flex: 1 1 30%;
   }
-  section.style-one {
-    margin-right: 34%;
-  }
-  section.style-two,
-  section.style-contact {
-    margin-left: 34%;
-  }
-
-  section.services {
-    padding-bottom: 10vh;
-  }
+ 
+/*För skärmar över 1600px*/
 }
-@media only all and (min-width: 1600px) {
-  .style-one div {
-    width: 50vw;
-    height: 50vh;
-  }
-  .style-two div {
-    width: 50vw;
-    height: 50vh;
-  }
-
-  #services .style-two div {
-    width: 50vw;
-    height: 50vh;
-  }
-
+@media all and (min-width: 1600px) {
   section.style-one,
   section.style-two {
-    width: 60%;
+    width: 70%;
   }
   section.style-one {
-    margin-right: 45%;
+    margin-right: 30%;
   }
   section.style-two {
-    margin-left: 40%;
+    margin-left: 30%;
   }
 
   #services,
@@ -1089,11 +1106,13 @@ footer::after {
     margin-left: 30%;
   }
 
-  #apply {
-    width: 60%;
-    margin-left: 40%;
+  #gallery .style-one {
+    width: 70%;
+    margin: 0;
   }
-  .services article {
-    flex-basis: 25%;
+
+  #apply{
+    margin:0;
+    margin-left: 30%;
   }
 }
