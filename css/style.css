@@ -1,3 +1,8 @@
+/* Stilmall för en responsiv layout för ett hunddagis i kursen 
+   Responsiv Webbdesign på HKR VT2019
+   Av: Henrik Johansson
+*/
+
 /*Importera typsnitt från google fonts*/
 @import url("https://fonts.googleapis.com/css?family=Merriweather");
 @import url("https://fonts.googleapis.com/css?family=Six+Caps");
@@ -173,7 +178,7 @@ nav a:focus,
   width: 15%;
   position: absolute;
   right: 2%;
-  top: 1vh;
+  top: 1vh; 
 }
 
 /**/
@@ -259,7 +264,7 @@ div.right-col {
 }
 
 div.left-col {
-  background-image: url(../images/adorable-animal-blur-533118-sm.jpg);
+  background-image: url(../images/adorable-animal-blur-533118m.jpg);
   background-size: cover;
   background-position-x: 25%;
   background-color: rgb(205, 230, 245);
@@ -286,7 +291,7 @@ div.right-col {
 }
 
 section.sellingpoint h2 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: rgb(205, 230, 245);
 }
 
@@ -653,7 +658,6 @@ footer::after {
     padding: 0;
     margin-bottom: 1%;
   }
-
 }
 
 /*Mindre Ändringar av textstorlek m.m. för skärmar 420-599px*/
@@ -670,7 +674,7 @@ footer::after {
   }
 
   section.sellingpoint h2 {
-    font-size: 3rem;
+    font-size: 2.6rem;
   }
 
   .services article {
@@ -758,6 +762,7 @@ footer::after {
     background-color: transparent;
     height: auto;
     margin-top: 1%;
+    overflow: hidden;
   }
 
   nav a,
@@ -806,9 +811,6 @@ footer::after {
   }
 
   /*Öka kvalitet på bilderna i skryt-området*/
-  div.left-col {
-    background-image: url(../images/adorable-animal-blur-533118m.jpg);
-  }
   div.right-col {
     background-image: url(../images/animal-canine-cute-1493110-m.jpg);
   }
@@ -861,21 +863,10 @@ footer::after {
     border: solid 0.5rem rgb(205, 230, 245);
   }
 
-  .style-one div {
-    transform: rotateY(180deg);
-    background-image: url(../images/animal-animal-photography-beagle-813467_sm.jpg);
-  }
-  .style-two div {
-    background-image: url(../images/adorable-animals-belgian-malinois-1633522-sm.jpg);
-  }
   .style-one h2,
   .style-two h2 {
     font-size: 7rem;
     line-height: 1;
-  }
-
-  .style-contact div {
-    background-image: url(../images/animal-cane-corso-canine-52997-sm.jpg);
   }
 
   .gallery .thumbnail {
@@ -1005,7 +996,7 @@ sidans text ändras från en till flera kolumner.*/
 
   section.start {
     height: 100vh;
-    background-image: url(../images/adorable-animal-breed-1805164-lg.jpg);
+    background-image: url(../images/adorable-animal-breed-1805164-m.jpg);
     background-position-y: 50%;
   }
 
@@ -1048,7 +1039,6 @@ sidans text ändras från en till flera kolumner.*/
 @media all and (min-width: 1300px) {
   section.start {
     height: 110vh;
-    background-position-y: 50%;
   }
 
   section.start h1 {
